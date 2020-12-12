@@ -80,7 +80,7 @@ The artifacts are available on GitHub, \url{https://github.com/mxz297/dyninst/tr
 
 \subsubsection{Hardware dependencies}
 
-For x86_64 binary rewriting, we recommend a 64GB memory.
+For x86\_64 binary rewriting, we recommend a 64GB memory.
 
 \subsubsection{Software dependencies}
 
@@ -101,7 +101,8 @@ For x86_64 binary rewriting, we recommend a 64GB memory.
 % {\em Obligatory}
 
 You can get the artifacts from GitHub and its dependencies using the following
-command:
+commands.
+
 
 git clone https://github.com/StanPlatinum/ShadowGuard.git
 
@@ -135,6 +136,21 @@ We provide scripts for each of the steps above.
 We will go through the entire experiment workflow by describing all the commands in each step.
 
 We provide two rewriting mode, \textit{funcptr} mode and \textit{jumptable} mode.
+
+Anyone can build the tool using the following commands.
+
+git clone https://github.com/StanPlatinum/BlockTrampoline.git
+
+cd BlockTrampoline
+
+%modify the makefile and prep.sh
+
+./prep.sh
+
+make
+
+
+
 
 \subsubsection{Micro-benchmark}
 
