@@ -4,11 +4,11 @@
 git clone https://github.com/spack/spack.git
 source spack/share/spack/setup-env.sh
 spack install gcc@7.3.0
+spack load gcc@7.3.0
 spack compiler find
 spack install dyninst@10.2.1 ^cmake@3.14.4 ^elfutils@0.179 ^boost@1.73.0 ^intel-tbb@2020.2 %gcc@7.3.0
 
 # Load dependencies
-spack load gcc@7.3.0
 spack load cmake@3.14.4
 spack load elfutils@0.179
 spack load boost@1.73.0
@@ -42,5 +42,17 @@ cd ../..
 # Compile the instrumentation tool
 make 
 
-# Print compiler's location
-spack location -i gcc@7.3.0 > compiler-location.txt
+# Print paths for SPEC config file
+rm -f spec-config-paths.txt
+echo "%define gcc_dir" "`spack location -i gcc@7.3.0`" >> spec-config-paths.txt
+echo "%define boost_lib" "`spack location -i boost@1.73.0`/lib" >> spec-config-paths.txt
+echo "%define elfutils_lib" "`spack location -i elfutils@0.179`/lib" >> spec-config-paths.txt
+echo "%define tbb_lib" "`spack location -i intel-tbb@2020.2`/lib" >> spec-config-paths.txt
+echo "%define libunwind_lib" "`pwd`/libunwind/install/lib" >> spec-config-paths.txt
+echo "%define dyninst_lib" "`pwd`/dyninst/install/lib" >> spec-config-paths.txt
+echo "%define dyninst_mutator" "`pwd`/BlockTrampoline" >> spec-config-paths.txt
+echo "%define dyninst_release_lib" "`spack location -i dyninst@10.2.1`/lib" >> spec-config-paths.txt
+echo "%define dyninst_release_mutator" "`pwd`/FuncReloc" >> spec-config-paths.txt
+
+
+
