@@ -135,7 +135,19 @@ We provide scripts for each of the steps above.
 
 We will go through the entire experiment workflow by describing all the commands in each step.
 
-We provide two rewriting mode, \textit{funcptr} mode and \textit{jumptable} mode.
+We provide different rewriting modes, \textit{funcptr} mode and \textit{jumptable} mode.
+
+
+
+
+
+
+\subsubsection{Micro-benchmark}
+
+SPEC2017.
+
+\subsubsection{Macro-benchmarks}
+
 
 Anyone can build the tool using the following commands.
 
@@ -149,26 +161,50 @@ cd BlockTrampoline
 
 make
 
+% above steps could be in one single bash script
 
-
-
-\subsubsection{Micro-benchmark}
-
-SPEC2017.
-
-\subsubsection{Macro-benchmarks}
 
 As described in our paper, several and macro-benchmarks are tested. Here we demonstrate how Firefox and Docker binary can be rewrited by our tool.
 
-Firefox.
+\vspace{2pt}\noindent\textbf{Firefox}. Still, we provide two modes to rewrite the libxul.so.
 
+Firefox (version 80.0) is usually shipped with the latest Ubuntu 18.04 dist. 
+To install it manually, one can visit \url{https://support.mozilla.org/en-US/kb/install-firefox-linux} and choose the version 80.0 for this evaluation.
 
 
 To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
 
-Docker.
+make firefox-funcptr
+
+We provide two web-browser-base benchmarks.
+
+\vspace{1pt}\noindent$\bullet$\textit{~Web Latency Benchmark}.
+
+Benchmark Installation.
+
+wget http://google.github.io/latency-benchmark/latency-benchmark-linux.zip
+unzip latency-benchmark-linux.zip
+
+Run Web Latency Benchmark.
+
+./latency-benchmark
+
+\vspace{1pt}\noindent$\bullet$\textit{~Jetstream2 Benchmark}.
+
+Benchmark Installation.
+
+Type https://browserbench.org/JetStream/ in Firefox search box.
+
+Run Jetstream2.
+
+Click the `Start Test' button.
+
+\vspace{2pt}\noindent\textbf{Docker.}
 
 Docker Installation guide can be found at \url{https://docs.docker.com/engine/install/ubuntu/}.
+
+
+make firefox
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment customization}
