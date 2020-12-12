@@ -33,38 +33,40 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Abstract}
 
-{\em Obligatory}
+% {\em Obligatory}
 
 \subsection{Artifact check-list (meta-information)}
 
-{\em Obligatory. Use just a few informal keywords in all fields applicable to your artifacts
-and remove the rest. This information is needed to find appropriate reviewers and gradually 
-unify artifact meta information in Digital Libraries.}
+% {\em Obligatory. Use just a few informal keywords in all fields applicable to your artifacts
+% and remove the rest. This information is needed to find appropriate reviewers and gradually 
+% unify artifact meta information in Digital Libraries.}
+
+A SPEC2017 benchmark suite is needed for this Artifact Evaluation.
 
 {\small
 \begin{itemize}
-  \item {\bf Algorithm: }
-  \item {\bf Program: }
-  \item {\bf Compilation: }
+  % \item {\bf Algorithm: }
+  % \item {\bf Program: }
+  \item {\bf Compilation: GCC and binary rewriting tools.}
   \item {\bf Transformations: Binary rewriting using Dyninst.}
-  \item {\bf Binary: }
-  \item {\bf Model: }
-  \item {\bf Data set: }
+  \item {\bf Binary: Linux ELF.}
+  % \item {\bf Model: }
+  % \item {\bf Data set: }
   \item {\bf Run-time environment: Root access to Ubuntu Linux.}
-  \item {\bf Hardware: }
-  \item {\bf Run-time state: }
-  \item {\bf Execution: }
-  \item {\bf Metrics: }
+  % \item {\bf Hardware: }
+  % \item {\bf Run-time state: }
+  % \item {\bf Execution: }
+  \item {\bf Metrics: We use execution time as one of the metrics.}
   \item {\bf Output: For SPEC2017 benchmark, the results are printed into a text file. For web-browser-based benchmarks, results are shown on the browser.}
-  \item {\bf Experiments: }
-  \item {\bf How much disk space required (approximately)?: }
+  \item {\bf Experiments: Using Bash scripts and Linux commands.}
+  \item {\bf How much disk space required (approximately)?: 5GB.}
   \item {\bf How much time is needed to prepare workflow (approximately)?: One hour.}
   \item {\bf How much time is needed to complete experiments (approximately)?: A day and a half.}
-  \item {\bf Publicly available?: Yes.}
-  \item {\bf Code licenses (if publicly available)?: }
-  \item {\bf Data licenses (if publicly available)?: }
-  \item {\bf Workflow framework used?: }
-  \item {\bf Archived (provide DOI)?: }
+  % \item {\bf Publicly available?: Yes.}
+  % \item {\bf Code licenses (if publicly available)?: }
+  % \item {\bf Data licenses (if publicly available)?: }
+  % \item {\bf Workflow framework used?: }
+  % \item {\bf Archived (provide DOI)?: }
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -74,20 +76,29 @@ unify artifact meta information in Digital Libraries.}
 
 The artifacts are available on GitHub, \url{https://github.com/mxz297/dyninst/tree/layout_opt}.
 
-{\em Obligatory}
+% {\em Obligatory}
 
 \subsubsection{Hardware dependencies}
 
+For x86_64 binary rewriting, we recommend a 64GB memory.
+
 \subsubsection{Software dependencies}
 
-\subsubsection{Data sets}
+(1) For x86_64 arch, we recommand a GCC version 7.3.0 or 7.5.0;
 
-\subsubsection{Models}
+(2) For ppc64le arch, we recommand gcc 6.4.0; 
+
+(3) For aarch64 arch, we recommand gcc 6.4.0.
+
+
+% \subsubsection{Data sets}
+
+% \subsubsection{Models}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Installation}
 
-{\em Obligatory}
+% {\em Obligatory}
 
 You can get the artifacts from GitHub and its dependencies using the following
 command:
@@ -114,11 +125,14 @@ The overall workflow consists of the following steps:
 
 5. Run the benchmarks.
 
+We provide scripts for each of the steps above.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evaluation and expected result}
 
-{\em Obligatory}
+% {\em Obligatory}
+
+We will go through the entire experiment workflow by describing all the commands in each step.
 
 \subsubsection{Micro-benchmark}
 
@@ -128,24 +142,22 @@ SPEC2017
 
 As described in our paper, several and macro-benchmarks are tested.
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment customization}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Notes}
+% \subsection{Notes}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Methodology}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Methodology}
 
-Submission, reviewing and badging methodology:
+% Submission, reviewing and badging methodology:
 
-\begin{itemize}
-  \item \url{https://www.acm.org/publications/policies/artifact-review-badging}
-  \item \url{http://cTuning.org/ae/submission-20201122.html}
-  \item \url{http://cTuning.org/ae/reviewing-20201122.html}
-\end{itemize}
+% \begin{itemize}
+%   \item \url{https://www.acm.org/publications/policies/artifact-review-badging}
+%   \item \url{http://cTuning.org/ae/submission-20201122.html}
+%   \item \url{http://cTuning.org/ae/reviewing-20201122.html}
+% \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % When adding this appendix to your paper, 
