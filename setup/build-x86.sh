@@ -2,6 +2,10 @@
 
 # Build software dependencies through spack
 git clone https://github.com/spack/spack.git
+git clone -b asplos21 https://github.com/mxz297/capstone.git capstone
+git clone -b asplos21 https://github.com/mxz297/libunwind.git libunwind
+git clone -b asplos21 https://github.com/mxz297/dyninst.git dyninst
+
 source spack/share/spack/setup-env.sh
 spack install gcc@7.3.0
 spack load gcc@7.3.0
@@ -15,7 +19,6 @@ spack load boost@1.73.0
 spack load intel-tbb@2020.2
 
 # Build our code and customized dependencies
-git clone -b asplos21 https://github.com/mxz297/capstone.git capstone
 cd capstone
 mkdir -p install build
 cd build
@@ -23,7 +26,6 @@ cmake -DCMAKE_INSTALL_PREFIX=`pwd`/../install ..
 make install -j4
 cd ../..
 
-git clone -b asplos21 https://github.com/mxz297/libunwind.git libunwind
 cd libunwind
 mkdir install
 ./autogen.sh
@@ -31,7 +33,6 @@ mkdir install
 make install -j4
 cd ..
 
-git clone -b asplos21 https://github.com/mxz297/dyninst.git dyninst
 cd dyninst
 mkdir -p install build
 cd build
@@ -40,7 +41,7 @@ make install -j4
 cd ../..
 
 # Compile the instrumentation tool
-make 
+make DYNINST_ROOT=`pwd`/dyninst/install DYNINST_RELEASE=`spack location -i dyninst@10.2.1`
 
 # Print paths for SPEC config file
 rm -f spec-config-paths.txt

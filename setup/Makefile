@@ -1,8 +1,5 @@
 all: BlockTrampoline FuncReloc Uninst Uninst-10.2.1
 
-DYNINST_ROOT=`pwd`/dyninst/install
-DYNINST_RELEASE=`spack location -i dyninst@10.2.1`
-
 BlockTrampoline: BlockTrampoline.cpp
 	g++ -g -o BlockTrampoline -O2 -std=c++11 BlockTrampoline.cpp \
 		-I$(DYNINST_ROOT)/include \
