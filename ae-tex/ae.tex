@@ -52,7 +52,7 @@ A SPEC2017 benchmark suite is needed for this Artifact Evaluation.
   \item {\bf Binary: Linux ELF.}
   % \item {\bf Model: }
   % \item {\bf Data set: }
-  \item {\bf Run-time environment: Root access to Ubuntu Linux.}
+  \item {\bf Run-time environment: Root access to Ubuntu Linux. We recommend Ubuntu Bionic 18.04.}
   % \item {\bf Hardware: }
   % \item {\bf Run-time state: }
   % \item {\bf Execution: }
@@ -84,11 +84,11 @@ For x86_64 binary rewriting, we recommend a 64GB memory.
 
 \subsubsection{Software dependencies}
 
-(1) For x86_64 arch, we recommand a GCC version 7.3.0 or 7.5.0;
+(1) For x86\_64 arch, we recommend a GCC version 7.3.0 or 7.5.0;
 
-(2) For ppc64le arch, we recommand gcc 6.4.0; 
+(2) For ppc64le arch, we recommend gcc 6.4.0; 
 
-(3) For aarch64 arch, we recommand gcc 6.4.0.
+(3) For aarch64 arch, we recommend gcc 6.4.0.
 
 
 % \subsubsection{Data sets}
@@ -134,13 +134,25 @@ We provide scripts for each of the steps above.
 
 We will go through the entire experiment workflow by describing all the commands in each step.
 
+We provide two rewriting mode, \textit{funcptr} mode and \textit{jumptable} mode.
+
 \subsubsection{Micro-benchmark}
 
-SPEC2017
+SPEC2017.
 
 \subsubsection{Macro-benchmarks}
 
-As described in our paper, several and macro-benchmarks are tested.
+As described in our paper, several and macro-benchmarks are tested. Here we demonstrate how Firefox and Docker binary can be rewrited by our tool.
+
+Firefox.
+
+
+
+To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
+
+Docker.
+
+Docker Installation guide can be found at \url{https://docs.docker.com/engine/install/ubuntu/}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment customization}
