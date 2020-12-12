@@ -89,13 +89,40 @@ The artifacts are available on GitHub, \url{https://github.com/mxz297/dyninst/tr
 
 {\em Obligatory}
 
+You can get the artifacts from GitHub and its dependencies using the following
+command:
+
+git clone https://github.com/StanPlatinum/ShadowGuard.git
+
+cd ShadowGuard
+
+./bazel.sh deps
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment workflow}
+
+The overall workflow consists of the following steps:
+
+1. Install the artifact and dependencies;
+
+2. Set environment variables;
+
+3. Build the benchmarks;
+
+4. Rewrite the benchmarks;
+
+5. Run the benchmarks.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evaluation and expected result}
 
 {\em Obligatory}
+
+\subsubsection{Micro-benchmark}
+
+SPEC2017
 
 \subsubsection{Macro-benchmarks}
 
