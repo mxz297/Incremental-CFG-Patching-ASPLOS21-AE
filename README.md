@@ -74,6 +74,81 @@ The `run_spec.sh` script takes two input the parameters. The first one is the ro
 
 # Firefox's libxul.so
 
+Anyone can build the tool using the following commands.
+
+```
+  git clone https://github.com/StanPlatinum/BlockTrampoline.git
+  cd BlockTrampoline
+  ./prep.sh
+  make
+```
+
+Then our rewriting tool `BlockTrampoline` can be found at current directory.
+
+We provide two modes to rewrite the libxul.so.
+
+Firefox (version 80.0) is usually shipped with the latest Ubuntu 18.04 dist. 
+To install it manually, one can visit [here](https://support.mozilla.org/en-US/kb/install-firefox-linux) and choose the version 80.0 for this evaluation.
+
+
+To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
+
+```
+  make firefox-funcptr
+```
+
+To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
+
+```
+make firefox-jumptable
+```
+
+
+Please noted that binaries `libxul.so.funcptr` and `libxul.so.jumptable` can be generated at the current directory. 
+Then, replace the original `libxul.so` with them respectively when evaluating different modes.
+
+We provide two web-browser-base benchmarks. Please exercise with cautions when replacing original binaries (e.g., libxul.so and docker). Always prepare a backup for the evaluation.
+
+
+## Web Latency Benchmark
+
+Benchmark Installation.
+
+```
+wget http://google.github.io/latency-benchmark/latency-benchmark-linux.zip
+unzip latency-benchmark-linux.zip
+```
+
+Run Web Latency Benchmark.
+
+```
+./latency-benchmark
+```
+
+
+The `Image loading jank' cannot be measured in the stable versions of Firefox (79.0 and 80.0) by Web Latency Benchmark.
+
+
+## Jetstream2 Benchmark
+
+Benchmark Installation.
+
+Type `https://browserbench.org/JetStream/` in Firefox search box.
+
+Run Jetstream2.
+
+Click the `Start Test` button.
+
 # Docker executable 
+
+Docker Installation guide can be found at [here](https://docs.docker.com/engine/install/ubuntu/).
+
+```
+cd BlockTrampoline
+make docker
+```
+
+A new docker binary `docker.inst.bak` will be generated at the current directory. Replace the original docker binary (at `/usr/bin/docker`) with it.
+
 
 # Diogenes
