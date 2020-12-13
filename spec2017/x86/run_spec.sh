@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/xm13/projects/spec_cpu2017
+cd $1
 rm -rf benchspec/C*/*/run 
 rm -rf benchspec/C*/*/build
 rm -rf benchspec/C*/*/exe
@@ -26,5 +26,7 @@ SPEC_BENCH+=" 649.fotonik3d_s"
 SPEC_BENCH+=" 654.roms_s"
 SPEC_BENCH+=" 657.xz_s"
 
-runcpu $SPEC_OPT --label=RELOC0FUNCPTR $SPEC_BENCH 
-#runcpu $SPEC_OPT --label=RELOC600 $SPEC_BENCH 
+runcpu $SPEC_OPT --label=ICFGPDIR --iterations $2 --tune all $SPEC_BENCH 
+runcpu $SPEC_OPT --label=ICFGPJT --iterations $2 --tune peak $SPEC_BENCH 
+runcpu $SPEC_OPT --label=ICFGPFUNCPTR --iterations $2 --tune peak $SPEC_BENCH 
+runcpu $SPEC_OPT --label=DYNFUNCRELOC --iterations $2 --tune peak $SPEC_BENCH 
