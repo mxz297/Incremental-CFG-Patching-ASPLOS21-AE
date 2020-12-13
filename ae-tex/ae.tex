@@ -20,6 +20,11 @@
 
 % for bash commands
 \usepackage{listings}
+\lstset{
+  language=bash,
+  % basicstyle=\ttfamily
+  basicstyle=\scriptsize
+}
 
 \begin{document}
 
@@ -91,15 +96,24 @@ The artifacts are available on GitHub, \url{https://github.com/mxz297/dyninst/tr
 
 \subsubsection{Hardware dependencies}
 
+Since our approach is quite general, it does not need any specific hardware dependencies. 
+However, here we list the experimental setup in our paper, for better reproducing the test results.
+
 For x86\_64 binary rewriting, we recommend a 64GB memory.
+
+For ppc64le, we
+
+For aarch64 arch, we
 
 \subsubsection{Software dependencies}
 
-(1) For x86\_64 arch, we recommend a GCC version 7.3.0 or 7.5.0;
+Our artifact is written in C/C++, so it should be built with a C/C++ compiler.
 
-(2) For ppc64le arch, we recommend gcc 6.4.0; 
+For x86\_64 arch, we recommend a GCC version 7.3.0 or 7.5.0;
 
-(3) For aarch64 arch, we recommend gcc 6.4.0.
+For ppc64le arch, we recommend gcc 6.4.0; 
+
+For aarch64 arch, we recommend gcc 6.4.0.
 
 
 % \subsubsection{Data sets}
@@ -116,15 +130,14 @@ commands.
 
 
 % \noindent See the following command :
-% \begin{lstlisting}[language=bash]
-%   $ wget http://tex.stackexchange.com
-% \end{lstlisting}
+\begin{lstlisting}[language=bash]
+  $ wget http://tex.stackexchange.com
+  git clone https://github.com/StanPlatinum/ShadowGuard.git
+  cd ShadowGuard
+  ./bazel.sh deps
+\end{lstlisting}
 
-git clone https://github.com/StanPlatinum/ShadowGuard.git
 
-cd ShadowGuard
-
-./bazel.sh deps
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -167,16 +180,13 @@ SPEC2017.
 
 Anyone can build the tool using the following commands.
 
-git clone https://github.com/StanPlatinum/BlockTrampoline.git
-
-cd BlockTrampoline
-
-%modify the makefile and prep.sh
-
-./prep.sh
-
-make
-
+\begin{lstlisting}[language=bash]
+  git clone https://github.com/StanPlatinum/BlockTrampoline.git
+  cd BlockTrampoline
+  %modify the makefile and prep.sh 
+  ./prep.sh
+  make
+\end{lstlisting}
 % above steps could be in one single bash script
 
 
@@ -190,12 +200,16 @@ To install it manually, one can visit \url{https://support.mozilla.org/en-US/kb/
 
 To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
 
-make firefox-funcptr
-
+\begin{lstlisting}[language=bash]
+  make firefox-funcptr
+\end{lstlisting}
 
 To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
 
-make firefox-jumptable
+\begin{lstlisting}[language=bash]
+  make firefox-jumptable
+\end{lstlisting}
+
 
 Please noted that binaries `libxul.so.funcptr' and `libxul.so.jumptable' can be generated at the current directory. 
 Then, replace the original libxul.so with them respectively when evaluating different modes.
@@ -206,12 +220,16 @@ We provide two web-browser-base benchmarks.
 
 Benchmark Installation.
 
+\begin{lstlisting}[language=bash]
 wget http://google.github.io/latency-benchmark/latency-benchmark-linux.zip
 unzip latency-benchmark-linux.zip
+\end{lstlisting}
 
 Run Web Latency Benchmark.
 
+\begin{lstlisting}[language=bash]
 ./latency-benchmark
+\end{lstlisting}
 
 \vspace{1pt}\noindent$\bullet$\textit{~Jetstream2 Benchmark}.
 
@@ -227,7 +245,9 @@ Click the `Start Test' button.
 
 Docker Installation guide can be found at \url{https://docs.docker.com/engine/install/ubuntu/}.
 
+\begin{lstlisting}[language=bash]
 make docker
+\end{lstlisting}
 
 A new docker binary `docker.inst.bak' will be generated at the current directory. Replace the original docker binary (at /usr/bin/docker) with it.
 
@@ -238,9 +258,10 @@ A new docker binary `docker.inst.bak' will be generated at the current directory
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Notes}
 
+Please exercise with cautions when replacing original binaries (e.g., libxul.so and docker). Always prepare a backup for the evaluation.
+
 The `Image loading jank' cannot be measured in the stable versions of Firefox (79.0 and 80.0) by Web Latency Benchmark.
 
-Exercise cautions with replacing original binaries (e.g., libxul.so and docker). Always prepare a backup for the evaluation.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection{Methodology}
