@@ -18,7 +18,11 @@
 
 \usepackage{hyperref}
 
+% for bash commands
+\usepackage{listings}
+
 \begin{document}
+
 
 \special{papersize=8.5in,11in}
 
@@ -27,6 +31,8 @@
 % please remove above part
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
 \appendix
 \section{Artifact Appendix}
 
@@ -34,6 +40,11 @@
 \subsection{Abstract}
 
 % {\em Obligatory}
+
+Our artifacts consist of an extension to Dyninst (a famous binary transformation framework). 
+We use test programs to verify correctness and measure the overhead caused by our approach - incremental CFG patching. The test
+program instruments every basic blocks with empty instrumentation, which will trigger relocating all functions.
+
 
 \subsection{Artifact check-list (meta-information)}
 
@@ -103,6 +114,11 @@ For x86\_64 binary rewriting, we recommend a 64GB memory.
 You can get the artifacts from GitHub and its dependencies using the following
 commands.
 
+
+% \noindent See the following command :
+% \begin{lstlisting}[language=bash]
+%   $ wget http://tex.stackexchange.com
+% \end{lstlisting}
 
 git clone https://github.com/StanPlatinum/ShadowGuard.git
 
@@ -176,6 +192,14 @@ To instrument Firefox’s libxul.so in \textit{funcptr} mode,
 
 make firefox-funcptr
 
+
+To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
+
+make firefox-jumptable
+
+Please noted that binaries `libxul.so.funcptr' and `libxul.so.jumptable' can be generated at the current directory. 
+Then, replace the original libxul.so with them respectively when evaluating different modes.
+
 We provide two web-browser-base benchmarks.
 
 \vspace{1pt}\noindent$\bullet$\textit{~Web Latency Benchmark}.
@@ -203,14 +227,20 @@ Click the `Start Test' button.
 
 Docker Installation guide can be found at \url{https://docs.docker.com/engine/install/ubuntu/}.
 
+make docker
 
-make firefox
+A new docker binary `docker.inst.bak' will be generated at the current directory. Replace the original docker binary (at /usr/bin/docker) with it.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment customization}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \subsection{Notes}
+\subsection{Notes}
+
+The `Image loading jank' cannot be measured in the stable versions of Firefox (79.0 and 80.0) by Web Latency Benchmark.
+
+Exercise cautions with replacing original binaries (e.g., libxul.so and docker). Always prepare a backup for the evaluation.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection{Methodology}
