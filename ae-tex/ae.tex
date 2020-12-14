@@ -125,17 +125,18 @@ For aarch64 arch, we recommend gcc 6.4.0.
 
 % {\em Obligatory}
 
-You can get the artifacts from GitHub and its dependencies using the following
-commands.
+You can get the artifacts from GitHub and its dependencies according to the detailed README file at
+\url{https://github.com/mxz297/Incremental-CFG-Patching-ASPLOS21-AE}.
+%using the following commands.
 
 
 % \noindent See the following command :
-\begin{lstlisting}[language=bash]
-  $ wget http://tex.stackexchange.com
-  git clone https://github.com/StanPlatinum/ShadowGuard.git
-  cd ShadowGuard
-  ./bazel.sh deps
-\end{lstlisting}
+% \begin{lstlisting}[language=bash]
+%   $ wget http://tex.stackexchange.com
+%   git clone https://github.com/StanPlatinum/ShadowGuard.git
+%   cd ShadowGuard
+%   ./bazel.sh deps
+% \end{lstlisting}
 
 
 
@@ -162,14 +163,15 @@ We provide scripts for each of the steps above.
 
 % {\em Obligatory}
 
-We will go through the entire experiment workflow by describing all the commands in each step.
+Here we go through the entire experiment workflow in each step.
 
-We provide different rewriting modes, \textit{funcptr} mode and \textit{jumptable} mode.
+Our artifact is general and arch-independent. We demonstrate how it can rewrite micro-
+and macro- benchmarks at x86\_64 as an example. Experiments and results on other architectures will be
+updated continuously on our AE Github repository.
 
 
-
-
-
+% We provide different rewriting modes, \textit{funcptr} mode and \textit{jumptable} mode 
+% for rewriting Firefox.
 
 \subsubsection{Micro-benchmark}
 
@@ -177,43 +179,45 @@ SPEC2017.
 
 \subsubsection{Macro-benchmarks}
 
+As described in our paper, several and macro-benchmarks are tested. 
+Here we demonstrate how Firefox and Docker binary can be rewrited by our tool.
 
-Anyone can build the tool using the following commands.
-
-\begin{lstlisting}[language=bash]
-  git clone https://github.com/StanPlatinum/BlockTrampoline.git
-  cd BlockTrampoline
-  ./prep.sh
-  make
-\end{lstlisting}
-
+Anyone can build the tool using the above-mentioned commands.
 Then our rewriting tool `BlockTrampoline' can be found at current directory.
+After that, environment variables can be set using a `prep.sh' bash script.
 
-As described in our paper, several and macro-benchmarks are tested. Here we demonstrate how Firefox and Docker binary can be rewrited by our tool.
+% \begin{lstlisting}[language=bash]
+%   git clone https://github.com/StanPlatinum/BlockTrampoline.git
+%   cd BlockTrampoline
+%   ./prep.sh
+%   make
+% \end{lstlisting}
 
-\vspace{2pt}\noindent\textbf{Firefox}. Still, we provide two modes to rewrite the libxul.so.
+\vspace{2pt}\noindent\textbf{Firefox rewriting}. 
+Still, we provide two modes to rewrite the libxul.so.
 
 Firefox (version 80.0) is usually shipped with the latest Ubuntu 18.04 dist. 
 To install it manually, one can visit \url{https://support.mozilla.org/en-US/kb/install-firefox-linux} and choose the version 80.0 for this evaluation.
 
 
-To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
+To instrument Firefox’s libxul.so in different modes, we provide a Makefile.
+Anyone can instrument libxul.so using different `make' commands. 
+For example, using `make firefox-funcptr' for \textit{funcptr} mode. 
+% \begin{lstlisting}[language=bash]
+%   make firefox-funcptr
+% \end{lstlisting}
 
-\begin{lstlisting}[language=bash]
-  make firefox-funcptr
-\end{lstlisting}
+% \begin{lstlisting}[language=bash]
+%   make firefox-jumptable
+% \end{lstlisting}
 
-To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
-
-\begin{lstlisting}[language=bash]
-  make firefox-jumptable
-\end{lstlisting}
-
-
-Please noted that binaries `libxul.so.funcptr' and `libxul.so.jumptable' can be generated at the current directory. 
+Please be noted that binaries `libxul.so.funcptr' and `libxul.so.jumptable' will be generated at the current directory. 
 Then, replace the original libxul.so with them respectively when evaluating different modes.
 
-We provide two web-browser-base benchmarks.
+
+\vspace{2pt}\noindent\textbf{Firefox evaluation}.
+
+We provide two web-browser-base benchmarks for evaluation.
 
 \vspace{1pt}\noindent$\bullet$\textit{~Web Latency Benchmark}.
 
@@ -240,7 +244,7 @@ Run Jetstream2.
 
 Click the `Start Test' button.
 
-\vspace{2pt}\noindent\textbf{Docker.}
+\vspace{2pt}\noindent\textbf{Docker executable rewriting}
 
 Docker Installation guide can be found at \url{https://docs.docker.com/engine/install/ubuntu/}.
 
@@ -250,9 +254,12 @@ make docker
 
 A new docker binary `docker.inst.bak' will be generated at the current directory. Replace the original docker binary (at /usr/bin/docker) with it.
 
+\vspace{2pt}\noindent\textbf{Docker executable evaluation}.
+
+Simply run the `run.sh' at to test the rewrited docker executable.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Experiment customization}
+% \subsection{Experiment customization}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Notes}
