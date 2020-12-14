@@ -72,6 +72,15 @@ cd $AEROOT/spec2017/x86
 
 The `run_spec.sh` script takes two input the parameters. The first one is the root directory path to the SPEC CPU 2017 benchmark. The second one is the number of iterations to run each benchmark. The results reported in our paper are based on 10 iterations, which can take a week to finish. You can reduce the number of iterations or increase the number of concurrent threads for running the benchmarks.
 
+Finally, we parse the result files from SPEC:
+
+```
+cd $AEROOT/spec2017
+python result_table.py $AEROOT/spec2017/spec_cpu2017/result
+```
+
+Script `result_table.py` takes one parameter, which is the result directory of SPEC CPU 2017.
+
 # Firefox's libxul.so
 
 Anyone can build the tool using the following commands.
