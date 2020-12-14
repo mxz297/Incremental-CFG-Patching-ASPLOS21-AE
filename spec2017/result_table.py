@@ -33,6 +33,10 @@ result_types = [ \
         "ICFGPFUNCPTR", \
         "DYNFUNCRELOC"
         ]
+rowmap = { "ICFGPDIR" : "dir" , \
+        "ICFGPJT"  : "jt", \
+        "ICFGPFUNCPTR" : "func-ptr", \
+        "DYNFUNCRELOC" : "SRBI" }
 
 class BenchRawResult(object):
     def __init__(self, name):
@@ -107,12 +111,12 @@ class SPECOverheadResult(object):
         if count > 0:
             avg = (avg ** (1.0 / count)) - 1
             avg = avg * 100
-        print ("max-overhead", max_overhead, "mean", avg, "pass", count)
+        print ("max overhead", max_overhead, "mean overhead", avg, "pass", count)
 
 
     def Print(self):
         for result_type in result_types:
-            print (result_type)
+            print ("Row {0}".format(rowmap[result_type]))
             self.printOneType2(result_type)
             
     def get_bar_chart_data(self, results_dir):        

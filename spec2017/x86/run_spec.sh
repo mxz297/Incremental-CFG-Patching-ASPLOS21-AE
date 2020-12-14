@@ -1,5 +1,6 @@
 #!/bin/bash
 cd $1
+rm -rf result/*
 rm -rf benchspec/C*/*/run 
 rm -rf benchspec/C*/*/build
 rm -rf benchspec/C*/*/exe

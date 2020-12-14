@@ -76,10 +76,10 @@ Finally, we parse the result files from SPEC:
 
 ```
 cd $AEROOT/spec2017
-python result_table.py $AEROOT/spec2017/spec_cpu2017/result
+./run_result.sh $AEROOT/spec2017/spec_cpu2017/result
 ```
 
-Script `result_table.py` takes one parameter, which is the result directory of SPEC CPU 2017.
+Script `run_result.sh` takes one parameter, which is the result directory of SPEC CPU 2017. The script will first print the overhead columns and then the coverage columns.
 
 # Firefox's libxul.so
 
