@@ -101,9 +101,9 @@ However, here we list the experimental setup in our paper, for better reproducin
 
 For x86\_64 binary rewriting, we recommend a 64GB memory.
 
-For ppc64le, we
+For ppc64le, we recommend
 
-For aarch64 arch, we
+For aarch64 arch, we recommend
 
 \subsubsection{Software dependencies}
 
@@ -125,10 +125,11 @@ For aarch64 arch, we recommend gcc 6.4.0.
 
 % {\em Obligatory}
 
-You can get the artifacts from GitHub and its dependencies according to the detailed README file at
-\url{https://github.com/mxz297/Incremental-CFG-Patching-ASPLOS21-AE}.
+You can get the artifacts and its dependencies according to the detailed README file 
+from our AE Github repositor at \url{https://github.com/mxz297/Incremental-CFG-Patching-ASPLOS21-AE}.
 %using the following commands.
 
+Please follow the `Setup software' section and simply run the build-up bash script `build-x86.sh'.
 
 % \noindent See the following command :
 % \begin{lstlisting}[language=bash]
@@ -137,9 +138,6 @@ You can get the artifacts from GitHub and its dependencies according to the deta
 %   cd ShadowGuard
 %   ./bazel.sh deps
 % \end{lstlisting}
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment workflow}
@@ -175,7 +173,17 @@ updated continuously on our AE Github repository.
 
 \subsubsection{Micro-benchmark}
 
-SPEC2017.
+\vspace{2pt}\noindent\textbf{SPEC2017}.
+
+SPEC2017 is currently licensed so the evaluator must have an access to SPEC2017 (which version?)
+or have a consent to use it from SPEC.
+
+To build and run the benchmark, xxxx
+
+A detailed manual can be found 
+at our README (\url{https://github.com/mxz297/Incremental-CFG-Patching-ASPLOS21-AE#spec-2017}) and SPEC.org (\url{https://www.spec.org/cpu2017/}).
+
+
 
 \subsubsection{Macro-benchmarks}
 
@@ -194,15 +202,15 @@ After that, environment variables can be set using a `prep.sh' bash script.
 % \end{lstlisting}
 
 \vspace{2pt}\noindent\textbf{Firefox rewriting}. 
-Still, we provide two modes to rewrite the libxul.so.
 
 Firefox (version 80.0) is usually shipped with the latest Ubuntu 18.04 dist. 
 To install it manually, one can visit \url{https://support.mozilla.org/en-US/kb/install-firefox-linux} and choose the version 80.0 for this evaluation.
 
-
+We provide two modes to rewrite the libxul.so.
 To instrument Firefox’s libxul.so in different modes, we provide a Makefile.
 Anyone can instrument libxul.so using different `make' commands. 
 For example, using `make firefox-funcptr' for \textit{funcptr} mode. 
+
 % \begin{lstlisting}[language=bash]
 %   make firefox-funcptr
 % \end{lstlisting}
@@ -242,21 +250,23 @@ Type https://browserbench.org/JetStream/ in Firefox search box.
 
 Run Jetstream2.
 
-Click the `Start Test' button.
+Click the `Start Test' button and collect the results displayed.
 
 \vspace{2pt}\noindent\textbf{Docker executable rewriting}
 
 Docker Installation guide can be found at \url{https://docs.docker.com/engine/install/ubuntu/}.
 
-\begin{lstlisting}[language=bash]
-make docker
-\end{lstlisting}
+Rewrite docker by running `make docker'.
 
-A new docker binary `docker.inst.bak' will be generated at the current directory. Replace the original docker binary (at /usr/bin/docker) with it.
+A new docker binary `docker.inst.bak' will be generated at the current directory. 
+Replace the original docker binary (at /usr/bin/docker) with it.
 
 \vspace{2pt}\noindent\textbf{Docker executable evaluation}.
 
-Simply run the `run.sh' at to test the rewrited docker executable.
+Simply run the `run.sh' at \url{https://github.com/mxz297/Incremental-CFG-Patching-ASPLOS21-AE/tree/main/docker} 
+to test the rewrited docker executable.
+
+More comprehensive benchmarks will be evaluated in our future work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection{Experiment customization}

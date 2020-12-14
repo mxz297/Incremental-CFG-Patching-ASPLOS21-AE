@@ -1,9 +1,8 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 
 #weijie: change the name of ShadowGuard
+
 Default_SG_PATH=$(cd "$(dirname "$0")";cd ..;pwd)/ShadowGuard
-
-
 
 echo "Current shell directory: $SHELL_FOLDER"
 echo "Default SG_PATH: $Default_SG_PATH"
