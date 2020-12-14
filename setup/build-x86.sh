@@ -10,7 +10,7 @@ source spack/share/spack/setup-env.sh
 spack install gcc@7.3.0
 spack load gcc@7.3.0
 spack compiler find
-spack install dyninst@10.2.1 ^cmake@3.14.4 ^elfutils@0.179 ^boost@1.73.0 ^intel-tbb@2020.2 %gcc@7.3.0
+spack install hpctoolkit ^dyninst@10.2.1 ^cmake@3.14.4 ^elfutils@0.179 ^boost@1.73.0 ^intel-tbb@2020.2 %gcc@7.3.0
 
 # Load dependencies
 spack load cmake@3.14.4

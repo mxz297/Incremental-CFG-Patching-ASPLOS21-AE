@@ -83,40 +83,23 @@ Script `run_result.sh` takes one parameter, which is the result directory of SPE
 
 # Firefox's libxul.so
 
-Anyone can build the tool using the following commands.
+We use the rewriting tool `BlockTrampoline` to rewrite `libxul.so`, which is available at `$AEROOT/setup/BlockTrampoline`.
 
-```
-  git clone https://github.com/StanPlatinum/BlockTrampoline.git
-  cd BlockTrampoline
-  ./prep.sh
-  make
-```
-
-Then our rewriting tool `BlockTrampoline` can be found at current directory.
-
-We provide two modes to rewrite the libxul.so.
+We provide two modes to rewrite the `libxul.so`.
 
 Firefox (version 80.0) is usually shipped with the latest Ubuntu 18.04 dist. 
 To install it manually, one can visit [here](https://support.mozilla.org/en-US/kb/install-firefox-linux) and choose the version 80.0 for this evaluation.
 
-
-To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
-
-```
-  make firefox-funcptr
-```
-
-To instrument Firefox’s libxul.so in \textit{funcptr} mode, 
+To rewrite `libxul.so`,
 
 ```
-make firefox-jumptable
+cd $AEROOT/firefox
+./run_inst.sh /lib64/firefox/libxul.so
 ```
 
+Script `run_inst.sh` takes one parameter, which is the path to Firefox's `libxul.so`. It will generate `libxul.so.jt`. 
 
-Please noted that binaries `libxul.so.funcptr` and `libxul.so.jumptable` can be generated at the current directory. 
-Then, replace the original `libxul.so` with them respectively when evaluating different modes.
-
-We provide two web-browser-base benchmarks. Please exercise with cautions when replacing original binaries (e.g., libxul.so and docker). Always prepare a backup for the evaluation.
+We use two web-browser-base benchmarks. Please exercise with cautions when replacing original binaries (e.g., libxul.so and docker). Always prepare a backup for the evaluation.
 
 
 ## Web Latency Benchmark
@@ -128,14 +111,24 @@ wget http://google.github.io/latency-benchmark/latency-benchmark-linux.zip
 unzip latency-benchmark-linux.zip
 ```
 
-Run Web Latency Benchmark.
+First, just run Web Latency Benchmark without any instrumentation to verify that Firefox is working properly.
 
 ```
 ./latency-benchmark
 ```
 
+Then, replace the original `libxul.so` with the generated `libxul.so.jt` and rerun the benchmark:
+
+```
+source env.sh
+./latency-benchmark
+```
+
+The script env.sh will setup necessary environment for running the instrumented version.
 
 The `Image loading jank' cannot be measured in the stable versions of Firefox (79.0 and 80.0) by Web Latency Benchmark.
+
+The benchmark result will be displayed in the web broswer. We do not have scripts to capture numbers from the web broswer. The overhead numbers are calculated manually.
 
 
 ## Jetstream2 Benchmark
@@ -146,18 +139,22 @@ Type `https://browserbench.org/JetStream/` in Firefox search box.
 
 Run Jetstream2.
 
-Click the `Start Test` button.
+Click the `Start Test` button. The benchmark will automatically run for 120 times and display the final results.
 
 # Docker executable 
 
-Docker Installation guide can be found at [here](https://docs.docker.com/engine/install/ubuntu/).
+Docker Installation guide can be found at [here](https://docs.docker.com/engine/install/ubuntu/). 
+
+To rewrite `docker`,
 
 ```
-cd BlockTrampoline
-make docker
+cd $AEROOT/docker
+./run_inst.sh /usr/bin/docker
 ```
 
-A new docker binary `docker.inst.bak` will be generated at the current directory. Replace the original docker binary (at `/usr/bin/docker`) with it.
+Script `run_inst.sh` takes one parameter, which is the path to docker executable. It will generate `docker.inst`. Replace the original docker binary (at `/usr/bin/docker`) with it. We provide a `run_docker.sh` script, which contains several basic docker commands as correctness test:
 
-
-# Diogenes
+```
+source env.sh
+./run_docker.sh
+```
