@@ -7,6 +7,7 @@ git clone -b asplos21 https://github.com/mxz297/libunwind.git libunwind
 git clone -b asplos21 https://github.com/mxz297/dyninst.git dyninst
 
 source spack/share/spack/setup-env.sh
+spack compiler find
 spack install gcc@7.3.0
 spack load gcc@7.3.0
 spack compiler find
