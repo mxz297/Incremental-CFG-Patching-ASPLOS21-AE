@@ -15,6 +15,8 @@ cd setup
 
 There should be a file named `spec-config-paths.txt`, which contains necessary paths needed for running SPEC CPU 2017.
 
+We use Spack (https://github.com/spack/spack) to build software dependencies. Spack by default will build packages under `/tmp`. If `/tmp` does not have sufficient space, you can change the build directory for Spack by following this section of Spack's documentation (https://spack.readthedocs.io/en/latest/configuration.html). Search for `build_stage` in your `config.yaml` file and add path that contains sufficient space.
+
 # SPEC 2017 
 
 Suppose the SPEC CPU 2017 benchmark is available in `$AEROOT/spec2017/spec_cpu2017`. We expect a `shrc` file in the directory, for which we can `source` to setup necessary environments for running SPEC CPU 2017.
