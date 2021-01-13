@@ -154,7 +154,7 @@ cd $AEROOT/docker
 ./run_inst.sh /usr/bin/docker
 ```
 
-Script `run_inst.sh` takes one parameter, which is the path to docker executable. It will generate `docker.inst`. Replace the original docker binary (at `/usr/bin/docker`) with it. We provide a `run_docker.sh` script, which contains several basic docker commands as correctness test:
+Script `run_inst.sh` takes one parameter, which is the path to docker executable. It will generate `docker.inst`. We provide a `run_docker.sh` script, which contains several basic docker commands as correctness test:
 
 ```
 source env.sh
