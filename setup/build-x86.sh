@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 # Build software dependencies through spack
 git clone https://github.com/spack/spack.git
 git clone -b asplos21 https://github.com/mxz297/capstone.git capstone
