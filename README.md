@@ -99,7 +99,11 @@ cd $AEROOT/firefox
 ./run_inst.sh /lib64/firefox/libxul.so
 ```
 
-Script `run_inst.sh` takes one parameter, which is the path to Firefox's `libxul.so`. It will generate `libxul.so.jt`. This step will print some messages to stderr, which can be ignored.
+Script `run_inst.sh` takes one parameter, which is the path to Firefox's `libxul.so`. It will generate `libxul.so.jt`. This step may print some messages to stderr such as:
+
+`ERROR: jump table relocation twice for address 635e234, old value 5157fd4, new value 5159d7e`.
+
+These error messages can be ignored.
 
 We use two web-browser-base benchmarks. Please exercise with cautions when replacing original binaries (e.g., libxul.so and docker). Always prepare a backup for the evaluation.
 
